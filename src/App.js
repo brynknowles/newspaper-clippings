@@ -15,26 +15,49 @@ class App extends React.Component {
     .then(data => this.setState({api: data.results}))
   }
 
+  addToFaves = (id) => {
+    // console.log("Id in App", id)
+    let newArray = [...this.state.api] 
+    let foundArticle = newArray.find(article => article.id === id)
+    // console.log("found object", foundArticle)
+    foundArticle.favorite = true
+    this.setState({api: newArray})
+  }
+
+  removeFromFavorites = (id) => {
+    let newArray = [...this.state.api] 
+    let foundArticle = newArray.find(article => article.id === id)
+    foundArticle.favorite = false
+    this.setState({api: newArray})
+  }
+
+  findFaveArticles = () => {
+    return this.state.api.filter(article => article.favorite)
+  }
 
   render() {
     return (
-      <div className="App">
-        <h1>newspaper clippings</h1>
-        <h2>a single page web app</h2>
-        <hr>
-        </hr>
+      <div className="container">
+        <h1 className="app-name">newspaper clippings</h1>
+        <div>
+          <hr>
+          </hr>
+        </div>
         <div className="searchbar">
+        <h2><span>***</span></h2>
           this is where the searchbar lives
         </div>
-        <hr>
-        </hr>
+
         <div className="favorites-list">
-          <FavoritesContainer />
+          <h2><span>My Favorite Articles</span></h2>
+          <FavoritesContainer faveArray={this.findFaveArticles()} clickHandler={this.removeFromFavorites}/>
+
         </div>
         <hr>
         </hr>
         <div className="articles-list">
-          <ArticlesContainer articleArray={this.state.api}/>
+          <h2><span>***</span></h2>
+          <ArticlesContainer articleArray={this.state.api} clickHandler={this.addToFaves}/>
         </div>
       </div>
     );

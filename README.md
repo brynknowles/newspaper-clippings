@@ -7,9 +7,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 You are building an application to view and save news articles
 
-## Due 11/30:
+<!-- ## Due 11/30:
 
-User should see a list of the most popular (by viewed) articles from New York Times within the last 1 day
+User should see a list of the most popular (by viewed) articles from New York Times within the last 1 day -->
 
 ## Due 12/1:
 
