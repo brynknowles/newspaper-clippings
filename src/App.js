@@ -3,9 +3,11 @@ import './App.css';
 import ArticlesContainer from './Containers/ArticlesContainer'
 import FavoritesContainer from './Containers/FavoritesContainer';
 
+
 class App extends React.Component {
   state = {
-    api: []
+    api: [],
+    faveArticles: [],
   }
 
   componentDidMount = () => {
@@ -15,24 +17,20 @@ class App extends React.Component {
     .then(data => this.setState({api: data.results}))
   }
 
-  addToFaves = (id) => {
-    // console.log("Id in App", id)
-    let newArray = [...this.state.api] 
-    let foundArticle = newArray.find(article => article.id === id)
-    // console.log("found object", foundArticle)
-    foundArticle.favorite = true
-    this.setState({api: newArray})
+  addToFaves = (article) => {
+    // console.log("added article to faves", article)
+    const faveArray = [...this.state.faveArticles, article]
+    this.setState({ faveArticles: faveArray})
   }
 
-  removeFromFavorites = (id) => {
-    let newArray = [...this.state.api] 
-    let foundArticle = newArray.find(article => article.id === id)
-    foundArticle.favorite = false
-    this.setState({api: newArray})
+  removeFromFaves = (article) => {
+    const newArray = this.state.faveArticles.filter(articleObj => articleObj.id !== article.id)
+    this.setState({faveArticles: newArray})
   }
 
-  findFaveArticles = () => {
-    return this.state.api.filter(article => article.favorite)
+  filteredArticles = () => {
+    const uniqueArticles = Array.from(new Set(this.state.faveArticles))
+    return uniqueArticles
   }
 
   render() {
@@ -44,19 +42,17 @@ class App extends React.Component {
           </hr>
         </div>
         <div className="searchbar">
-        <h2><span>***</span></h2>
-          this is where the searchbar lives
+          <h1>search form</h1>
         </div>
 
         <div className="favorites-list">
-          <h2><span>My Favorite Articles</span></h2>
-          <FavoritesContainer faveArray={this.findFaveArticles()} clickHandler={this.removeFromFavorites}/>
-
+          <h1>favorites</h1>
+          <FavoritesContainer faveArray={this.filteredArticles()} clickHandler={this.removeFromFaves}/>
         </div>
         <hr>
         </hr>
         <div className="articles-list">
-          <h2><span>***</span></h2>
+          <h1>articles</h1>
           <ArticlesContainer articleArray={this.state.api} clickHandler={this.addToFaves}/>
         </div>
       </div>

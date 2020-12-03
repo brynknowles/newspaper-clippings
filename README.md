@@ -11,10 +11,10 @@ You are building an application to view and save news articles
 
 User should see a list of the most popular (by viewed) articles from New York Times within the last 1 day -->
 
-## Due 12/1:
+<!-- ## Due 12/1:
 
 User can click on an article to favorite that article
-User can un-favorite an article
+User can un-favorite an article -->
 
 ## BONUS Due 12/2:
 
