@@ -41,10 +41,6 @@ class App extends React.Component {
           <hr>
           </hr>
         </div>
-        <div className="searchbar">
-          <h1>search form</h1>
-        </div>
-
         <div className="favorites-list">
           <h1>favorites</h1>
           <FavoritesContainer faveArray={this.filteredArticles()} clickHandler={this.removeFromFaves}/>
