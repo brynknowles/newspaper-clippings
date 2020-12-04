@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const SearchForm = (props) => {
     let {searchValue, changeHandler} = props
 

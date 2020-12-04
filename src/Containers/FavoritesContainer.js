@@ -15,8 +15,7 @@ class FavoritesContainer extends React.Component {
             </div>
         )
     }
-
-
+    
 }
 
 export default FavoritesContainer

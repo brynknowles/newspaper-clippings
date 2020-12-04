@@ -3,18 +3,15 @@ import ArticleCard from '../Components/ArticleCard'
 import SearchForm from '../Components/SearchForm'
 
 class ArticlesContainer extends React.Component {
-    // console.log("props in ArticlesContainer: ", this.props)
+
     state = {
         searchValue: ""
     }
 
-    // renderAllArticles = () => {
-    //     return this.props.articleArray.map(articleObj => <ArticleCard key={articleObj.id} article={articleObj} clickHandler={this.props.clickHandler}/>)
-    // }
-
     renderAllArticles = () => {
-        let filteredMovies = this.props.articleArray.filter(movieObj => movieObj.title.toLowerCase().includes(this.state.searchValue.toLowerCase()) )
-        return filteredMovies.map(articleObj => <ArticleCard key={articleObj.id} article={articleObj} clickHandler={this.props.clickHandler}/>)
+        let filteredArticles = this.props.articleArray.filter(articleObj => articleObj.title.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+        
+        return filteredArticles.map(articleObj => <ArticleCard key={articleObj.id} article={articleObj} clickHandler={this.props.clickHandler}/>)
     }
 
     searchForArticles = (e) => {
@@ -32,7 +29,6 @@ class ArticlesContainer extends React.Component {
                 </div>
                 
             </div>
-
         )
     }
 
